@@ -13,8 +13,8 @@ interface StepCardProps {
 
 const StepCard: React.FC<StepCardProps> = ({ icon, title, description, step, delay }) => (
   <FadeIn delay={delay} direction="up" className="relative">
-    <div className="bg-white rounded-xl shadow-md p-8 hover:shadow-lg transition-shadow duration-300">
-      <div className="absolute -top-4 -left-4 h-12 w-12 bg-green-600 text-white rounded-full flex items-center justify-center text-xl font-bold">
+    <div className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-all duration-300 border border-green-100 hover:border-green-300 transform hover:translate-y-[-5px]">
+      <div className="absolute -top-4 -left-4 h-12 w-12 bg-green-600 text-white rounded-full flex items-center justify-center text-xl font-bold shadow-md">
         {step}
       </div>
       <div className="flex flex-col items-center text-center pt-6">
@@ -30,7 +30,7 @@ const StepCard: React.FC<StepCardProps> = ({ icon, title, description, step, del
 
 const HowItWorks: React.FC = () => {
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
       <div className="container mx-auto px-4">
         <FadeIn direction="up" className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-green-800 mb-4">

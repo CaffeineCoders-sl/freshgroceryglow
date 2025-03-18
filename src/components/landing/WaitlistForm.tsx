@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import FadeIn from '../animations/FadeIn';
 import { toast } from 'sonner';
-import { MapPin, MessageSquare, Mail, Phone } from 'lucide-react';
+import { MapPin, MessageSquare, Mail, Phone, Check } from 'lucide-react';
 
 const WaitlistForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -35,11 +35,11 @@ const WaitlistForm: React.FC = () => {
   };
 
   return (
-    <section className="py-20 bg-white">
+    <section id="waitlist-section" className="py-20 bg-gradient-to-br from-white to-green-50">
       <div className="container mx-auto px-4">
         <div className="max-w-2xl mx-auto">
           <FadeIn direction="up">
-            <div className="bg-gradient-to-br from-green-100 to-green-50 p-8 md:p-12 rounded-2xl shadow-lg">
+            <div className="bg-white p-8 md:p-12 rounded-2xl shadow-xl border border-green-100">
               <h2 className="text-3xl font-bold text-green-800 mb-6 text-center">
                 Be the First to Know!
               </h2>
@@ -48,7 +48,7 @@ const WaitlistForm: React.FC = () => {
                 Get fresher groceries delivered straight to your doorstep!
               </p>
               
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
                     Full Name
@@ -60,13 +60,13 @@ const WaitlistForm: React.FC = () => {
                     onChange={handleChange}
                     required
                     placeholder="Enter your full name"
-                    className="w-full"
+                    className="w-full border-green-200 focus:border-green-500 focus:ring-green-500"
                   />
                 </div>
                 
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
-                    <Mail className="h-4 w-4" /> Email Address
+                    <Mail className="h-4 w-4 text-green-600" /> Email Address
                   </label>
                   <Input
                     id="email"
@@ -76,13 +76,13 @@ const WaitlistForm: React.FC = () => {
                     onChange={handleChange}
                     required
                     placeholder="Enter your email address"
-                    className="w-full"
+                    className="w-full border-green-200 focus:border-green-500 focus:ring-green-500"
                   />
                 </div>
                 
                 <div>
                   <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
-                    <Phone className="h-4 w-4" /> Phone Number (Optional)
+                    <Phone className="h-4 w-4 text-green-600" /> Phone Number (Optional)
                   </label>
                   <Input
                     id="phone"
@@ -91,13 +91,13 @@ const WaitlistForm: React.FC = () => {
                     value={formData.phone}
                     onChange={handleChange}
                     placeholder="Enter your phone number (optional)"
-                    className="w-full"
+                    className="w-full border-green-200 focus:border-green-500 focus:ring-green-500"
                   />
                 </div>
 
                 <div>
                   <label htmlFor="location" className="block text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
-                    <MapPin className="h-4 w-4" /> Delivery Location
+                    <MapPin className="h-4 w-4 text-green-600" /> Delivery Location
                   </label>
                   <Input
                     id="location"
@@ -105,13 +105,13 @@ const WaitlistForm: React.FC = () => {
                     value={formData.location}
                     onChange={handleChange}
                     placeholder="Enter your delivery location"
-                    className="w-full"
+                    className="w-full border-green-200 focus:border-green-500 focus:ring-green-500"
                   />
                 </div>
 
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
-                    <MessageSquare className="h-4 w-4" /> Additional Information
+                    <MessageSquare className="h-4 w-4 text-green-600" /> Additional Information
                   </label>
                   <Textarea
                     id="message"
@@ -119,16 +119,21 @@ const WaitlistForm: React.FC = () => {
                     value={formData.message}
                     onChange={handleChange}
                     placeholder="Any special preferences or requirements?"
-                    className="w-full min-h-[100px]"
+                    className="w-full min-h-[100px] border-green-200 focus:border-green-500 focus:ring-green-500"
                   />
                 </div>
                 
                 <Button 
                   type="submit" 
-                  className="w-full bg-green-600 hover:bg-green-700 text-white py-6 rounded-lg font-medium"
+                  className="w-full bg-green-600 hover:bg-green-700 text-white py-6 rounded-lg font-medium transition-all transform hover:translate-y-[-2px] hover:shadow-lg"
                   disabled={isSubmitting}
                 >
-                  {isSubmitting ? 'Submitting...' : 'Join Our Waitlist'}
+                  {isSubmitting ? 'Submitting...' : (
+                    <>
+                      Join Our Waitlist
+                      <Check className="ml-2 h-5 w-5" />
+                    </>
+                  )}
                 </Button>
 
                 <p className="text-xs text-gray-500 text-center mt-4">
