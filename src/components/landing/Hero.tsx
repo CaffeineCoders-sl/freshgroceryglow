@@ -4,6 +4,7 @@ import FadeIn from '../animations/FadeIn';
 import AnimatedText from '../animations/AnimatedText';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
+import CartPreview from './CartPreview';
 
 const Hero: React.FC = () => {
   const scrollToWaitlist = () => {
@@ -39,14 +40,10 @@ const Hero: React.FC = () => {
           </FadeIn>
           
           <FadeIn delay={0.3} direction="left">
-            <div className="relative">
+            <div className="relative h-[450px] max-w-md mx-auto lg:mx-0 lg:ml-auto">
               <div className="absolute -top-6 -left-6 w-24 h-24 bg-yellow-400 rounded-full opacity-30 animate-pulse"></div>
               <div className="absolute -bottom-8 -right-8 w-40 h-40 bg-green-400 rounded-full opacity-20 animate-pulse"></div>
-              <img 
-                src="/placeholder.svg" 
-                alt="Happy person with groceries" 
-                className="rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-500 relative z-10 border-4 border-white"
-              />
+              <CartPreview />
             </div>
           </FadeIn>
         </div>
