@@ -15,8 +15,9 @@ const FadeIn: React.FC<FadeInProps> = ({
   direction = 'up', 
   className = '' 
 }) => {
-  let initial = { opacity: 0 };
+  let initial: { opacity: number; y?: number; x?: number } = { opacity: 0 };
   
+  // Set the initial position based on direction
   switch (direction) {
     case 'up':
       initial = { ...initial, y: 50 };
