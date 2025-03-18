@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ShoppingBasket, Plus, Minus, Check, X } from 'lucide-react';
+import { ShoppingBasket, Plus, Minus, Check, X, ShoppingCart, Sparkles } from 'lucide-react';
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -13,16 +13,19 @@ const CartPreview: React.FC = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5, duration: 0.6 }}
-        className="absolute -top-6 -right-6 bg-green-500 rounded-full p-3 shadow-lg z-20"
+        className="absolute -top-6 -right-6 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full p-3 shadow-lg z-20"
       >
-        <ShoppingBasket className="h-6 w-6 text-white" />
+        <ShoppingCart className="h-6 w-6 text-white" />
       </motion.div>
       
-      <Card className="bg-white/90 backdrop-blur-sm border-0 shadow-2xl rounded-2xl overflow-hidden p-4 relative">
+      <Card className="bg-white/90 backdrop-blur-sm border-0 shadow-2xl rounded-2xl overflow-hidden p-4 relative transform perspective-1000 rotateY-3 hover:rotateY-0 transition-transform duration-500">
         <div className="flex justify-between items-center mb-4">
-          <h3 className="font-bold text-green-800">Your Basket</h3>
-          <Badge variant="outline" className="bg-green-100 text-green-800 border-green-200">
-            Coming Soon
+          <h3 className="font-bold text-green-800 flex items-center">
+            <ShoppingBasket className="h-5 w-5 mr-2 text-green-600" />
+            Your Basket
+          </h3>
+          <Badge variant="outline" className="bg-green-100 text-green-800 border-green-200 flex items-center">
+            <Sparkles className="h-3 w-3 mr-1 text-yellow-500" /> Coming Soon
           </Badge>
         </div>
         
@@ -52,14 +55,14 @@ const CartPreview: React.FC = () => {
         </div>
         
         {/* Cart Total */}
-        <div className="border-t border-gray-100 pt-3 mb-4">
+        <div className="border-t border-dashed border-green-100 pt-3 mb-4">
           <div className="flex justify-between text-sm text-gray-500 mb-1">
             <span>Subtotal</span>
             <span>Rs. 3,550</span>
           </div>
           <div className="flex justify-between text-sm text-gray-500 mb-1">
             <span>Delivery</span>
-            <span>Free</span>
+            <span className="text-green-600 font-medium">Free</span>
           </div>
           <div className="flex justify-between font-bold text-green-800 mt-2">
             <span>Total</span>
@@ -68,7 +71,7 @@ const CartPreview: React.FC = () => {
         </div>
         
         {/* Checkout Button */}
-        <Button className="w-full bg-green-600 hover:bg-green-700 text-white font-medium shadow-md">
+        <Button className="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-medium shadow-md">
           <Check className="mr-2 h-4 w-4" /> Checkout
         </Button>
         
@@ -93,14 +96,14 @@ const CartItem: React.FC<CartItemProps> = ({ name, price, image, quantity, delay
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay, duration: 0.5 }}
-      className="flex items-center gap-3 bg-white p-2 rounded-lg shadow-sm"
+      className="flex items-center gap-3 bg-gradient-to-r from-white to-green-50 p-2 rounded-lg shadow-sm hover:shadow-md transition-all duration-300"
     >
-      <div className="h-12 w-12 rounded-md overflow-hidden bg-gray-100 flex-shrink-0">
+      <div className="h-12 w-12 rounded-md overflow-hidden bg-gradient-to-br from-green-100 to-emerald-50 flex-shrink-0 shadow-inner">
         <img src={image} alt={name} className="h-full w-full object-cover" />
       </div>
       <div className="flex-grow">
         <h4 className="text-sm font-medium text-gray-800">{name}</h4>
-        <p className="text-xs text-gray-500">{price}</p>
+        <p className="text-xs text-green-700 font-medium">{price}</p>
       </div>
       <div className="flex items-center gap-2">
         <button className="p-1 rounded-full bg-green-100 hover:bg-green-200 transition-colors">
