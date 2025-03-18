@@ -2,18 +2,22 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import FadeIn from '../animations/FadeIn';
 import { toast } from 'sonner';
+import { MapPin, MessageSquare, Mail, Phone } from 'lucide-react';
 
 const WaitlistForm: React.FC = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: ''
+    phone: '',
+    location: '',
+    message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
@@ -25,7 +29,7 @@ const WaitlistForm: React.FC = () => {
     // Simulate API call
     setTimeout(() => {
       toast.success("Thanks for joining our waitlist! We'll be in touch soon.");
-      setFormData({ name: '', email: '', phone: '' });
+      setFormData({ name: '', email: '', phone: '', location: '', message: '' });
       setIsSubmitting(false);
     }, 1000);
   };
@@ -41,6 +45,7 @@ const WaitlistForm: React.FC = () => {
               </h2>
               <p className="text-gray-600 mb-8 text-center">
                 Join our waitlist to get exclusive early access and special offers when we launch.
+                Get fresher groceries delivered straight to your doorstep!
               </p>
               
               <form onSubmit={handleSubmit} className="space-y-4">
@@ -60,8 +65,8 @@ const WaitlistForm: React.FC = () => {
                 </div>
                 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                    Email Address
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
+                    <Mail className="h-4 w-4" /> Email Address
                   </label>
                   <Input
                     id="email"
@@ -76,8 +81,8 @@ const WaitlistForm: React.FC = () => {
                 </div>
                 
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-                    Phone Number (Optional)
+                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
+                    <Phone className="h-4 w-4" /> Phone Number (Optional)
                   </label>
                   <Input
                     id="phone"
@@ -89,14 +94,47 @@ const WaitlistForm: React.FC = () => {
                     className="w-full"
                   />
                 </div>
+
+                <div>
+                  <label htmlFor="location" className="block text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
+                    <MapPin className="h-4 w-4" /> Delivery Location
+                  </label>
+                  <Input
+                    id="location"
+                    name="location"
+                    value={formData.location}
+                    onChange={handleChange}
+                    placeholder="Enter your delivery location"
+                    className="w-full"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1 flex items-center gap-2">
+                    <MessageSquare className="h-4 w-4" /> Additional Information
+                  </label>
+                  <Textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    placeholder="Any special preferences or requirements?"
+                    className="w-full min-h-[100px]"
+                  />
+                </div>
                 
                 <Button 
                   type="submit" 
                   className="w-full bg-green-600 hover:bg-green-700 text-white py-6 rounded-lg font-medium"
                   disabled={isSubmitting}
                 >
-                  {isSubmitting ? 'Submitting...' : 'Submit'}
+                  {isSubmitting ? 'Submitting...' : 'Join Our Waitlist'}
                 </Button>
+
+                <p className="text-xs text-gray-500 text-center mt-4">
+                  By submitting this form, you agree to receive updates about our launch and promotional offers.
+                  We respect your privacy and will never share your information.
+                </p>
               </form>
             </div>
           </FadeIn>
