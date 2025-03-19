@@ -42,11 +42,11 @@ const Hero: React.FC = () => {
           <FadeIn delay={0.1} direction="right">
             <div className="space-y-8 max-w-xl">
               <div className="inline-flex items-center px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm font-medium shadow-sm">
-                Coming Soon to Sri Lanka
+                <span className="font-bold mr-1">FreshPick</span> - Coming Soon to Sri Lanka
               </div>
               
               <AnimatedText 
-                text="Fresh Groceries Delivered Right to Your Door"
+                text="FreshPick: Fresh Groceries Delivered "
                 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight"
               />
               <p className="text-xl text-gray-200 backdrop-blur-sm bg-black/20 p-3 rounded-lg">
@@ -57,7 +57,7 @@ const Hero: React.FC = () => {
                 className="group bg-white hover:bg-gray-100 text-black px-8 py-6 text-lg rounded-full font-medium transition-all duration-300"
               >
                 <span className="relative z-10 flex items-center">
-                  Join the Waitlist
+                  Join FreshPick Waitlist
                   <ArrowRight className="ml-2 h-5 w-5 transform group-hover:translate-x-1 transition-transform" />
                 </span>
               </Button>
