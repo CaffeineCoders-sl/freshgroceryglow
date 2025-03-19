@@ -1,37 +1,62 @@
-
 import React from 'react';
 import FadeIn from '../animations/FadeIn';
-import { Smartphone, TruckIcon, Package, ThumbsUp } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Search, ShoppingCart, Truck, ThumbsUp } from 'lucide-react';
 
-interface StepCardProps {
+interface StepProps {
   icon: React.ReactNode;
   title: string;
   description: string;
-  step: number;
+  stepNumber: number;
   delay: number;
 }
 
-const StepCard: React.FC<StepCardProps> = ({ icon, title, description, step, delay }) => (
-  <FadeIn delay={delay} direction="up" className="relative">
-    <div className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-all duration-300 border border-green-100 hover:border-green-300 transform hover:translate-y-[-5px]">
-      <div className="absolute -top-4 -left-4 h-12 w-12 bg-green-600 text-white rounded-full flex items-center justify-center text-xl font-bold shadow-md">
-        {step}
-      </div>
-      <div className="flex flex-col items-center text-center pt-6">
-        <div className="h-16 w-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-6">
+const Step: React.FC<StepProps> = ({ icon, title, description, stepNumber, delay }) => (
+  <FadeIn delay={delay} className="relative">
+    <div className="flex flex-col items-center text-center">
+      <motion.div 
+        className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg mb-6 relative z-10"
+        whileHover={{ scale: 1.1, rotate: 5 }}
+        transition={{ type: "spring", stiffness: 300 }}
+      >
+        <div className="text-gray-900">
           {icon}
         </div>
-        <h3 className="text-xl font-bold text-green-800 mb-3">{title}</h3>
-        <p className="text-gray-600">{description}</p>
-      </div>
+        <div className="absolute -top-2 -right-2 w-6 h-6 bg-black text-white rounded-full flex items-center justify-center text-xs font-bold">
+          {stepNumber}
+        </div>
+      </motion.div>
+      
+      <h3 className="text-xl font-semibold mb-3 text-gray-900">{title}</h3>
+      <p className="text-gray-600 max-w-xs">{description}</p>
     </div>
+    
+    {stepNumber < 4 && (
+      <div className="hidden md:block absolute top-8 left-[calc(50%+4rem)] w-[calc(100%-8rem)] h-px bg-gray-200">
+        <motion.div 
+          className="absolute top-0 left-0 h-full bg-gray-400" 
+          initial={{ width: "0%" }}
+          whileInView={{ width: "100%" }}
+          transition={{ type: "spring", stiffness: 300 }}
+        />
+      </div>
+    )}
   </FadeIn>
 );
 
 const HowItWorks: React.FC = () => {
   return (
-    <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
-      <div className="container mx-auto px-4">
+    <section className="py-20 bg-gradient-to-b from-gray-50 to-white relative">
+      {/* Add background image */}
+      <div className="absolute inset-0 opacity-5 z-0">
+        <img 
+          src="https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80" 
+          alt="Grocery pattern" 
+          className="w-full h-full object-cover"
+        />
+      </div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <FadeIn direction="up" className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-green-800 mb-4">
             How FreshPick.lk Works
@@ -44,35 +69,35 @@ const HowItWorks: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
           <div className="absolute top-1/2 left-0 right-0 h-1 bg-green-200 -z-10 hidden lg:block"></div>
           
-          <StepCard 
-            icon={<Smartphone className="h-8 w-8" />}
+          <Step 
+            icon={<Search className="h-8 w-8" />}
             title="Place Your Order"
             description="Browse our selection and add items to your cart. Customize your order based on your preferences."
-            step={1}
+            stepNumber={1}
             delay={0.1}
           />
           
-          <StepCard 
-            icon={<Package className="h-8 w-8" />}
+          <Step 
+            icon={<ShoppingCart className="h-8 w-8" />}
             title="We Prepare Your Order"
             description="We handpick the freshest items from local farms and suppliers to ensure quality."
-            step={2}
+            stepNumber={2}
             delay={0.2}
           />
           
-          <StepCard 
-            icon={<TruckIcon className="h-8 w-8" />}
+          <Step 
+            icon={<Truck className="h-8 w-8" />}
             title="Fast Delivery"
             description="Our delivery team brings your order right to your doorstep at your chosen time slot."
-            step={3}
+            stepNumber={3}
             delay={0.3}
           />
           
-          <StepCard 
+          <Step 
             icon={<ThumbsUp className="h-8 w-8" />}
             title="Enjoy Fresh Groceries"
             description="Unpack and enjoy the freshest groceries without leaving the comfort of your home."
-            step={4}
+            stepNumber={4}
             delay={0.4}
           />
         </div>

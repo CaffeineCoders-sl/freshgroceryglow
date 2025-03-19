@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { ShoppingBasket, Plus, Minus, Check, X, ShoppingCart, Sparkles, ArrowRight } from 'lucide-react';
@@ -104,7 +103,7 @@ const CartPreview: React.FC = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5, duration: 0.6 }}
-        className="absolute -top-6 -right-6 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full p-3 shadow-lg z-30"
+        className="absolute -top-6 -right-6 bg-black rounded-full p-3 shadow-lg z-30"
         whileHover={{ 
           scale: 1.1,
           boxShadow: "0 8px 30px rgba(0, 0, 0, 0.1)"
@@ -144,25 +143,32 @@ const CartPreview: React.FC = () => {
               <div className="absolute -right-2 top-1/3 w-1 h-10 bg-gradient-to-b from-yellow-300 to-transparent rounded-full opacity-50"></div>
               
               <CartItem 
-                name="Organic Vegetables Box" 
-                price="Rs. 1,200" 
-                image="/placeholder.svg" 
+                name="Organic Fresh Vegetables Mix"
+                price="Rs. 450"
                 quantity={1}
-                delay={0.6}
+                image="https://images.unsplash.com/photo-1566385101042-1a0aa0c1268c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1769&q=80"
+                delay={0.2}
               />
               <CartItem 
-                name="Fresh Fruit Selection" 
-                price="Rs. 950" 
-                image="/placeholder.svg" 
+                name="Farm Fresh Eggs (6 pcs)"
+                price="Rs. 220"
                 quantity={2}
-                delay={0.8}
+                image="https://images.unsplash.com/photo-1506976785307-8732e854ad03?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1769&q=80"
+                delay={0.3}
               />
               <CartItem 
-                name="Local Farm Eggs" 
-                price="Rs. 450" 
-                image="/placeholder.svg" 
+                name="Organic Bananas"
+                price="Rs. 180"
                 quantity={1}
-                delay={1}
+                image="https://images.unsplash.com/photo-1603833665858-e61d17a86224?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1769&q=80"
+                delay={0.4}
+              />
+              <CartItem 
+                name="Fresh Milk (1L)"
+                price="Rs. 290"
+                quantity={1}
+                image="https://images.unsplash.com/photo-1550583724-b2692b85b150?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80"
+                delay={0.5}
               />
             </div>
             
@@ -177,7 +183,7 @@ const CartPreview: React.FC = () => {
               
               <div className="flex justify-between text-sm text-gray-500 mb-1">
                 <span>Subtotal</span>
-                <span>Rs. 3,550</span>
+                <span>Rs. 1,360</span>
               </div>
               <div className="flex justify-between text-sm text-gray-500 mb-1">
                 <span>Delivery</span>
@@ -193,17 +199,17 @@ const CartPreview: React.FC = () => {
                     repeatType: "reverse"
                   }}
                 >
-                  Free
+                  Rs. 150
                 </motion.span>
               </div>
               <div className="flex justify-between font-bold mt-2">
                 <span className="text-green-800">Total</span>
-                <span className="bg-gradient-to-r from-green-600 to-emerald-700 bg-clip-text text-transparent">Rs. 3,550</span>
+                <span className="bg-gradient-to-r from-green-600 to-emerald-700 bg-clip-text text-transparent">Rs. 1,510</span>
               </div>
             </div>
             
             {/* Checkout Button */}
-            <Button className="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-medium shadow-md group relative overflow-hidden">
+            <Button className="w-full bg-black hover:bg-black/80 text-white font-medium shadow-md group relative overflow-hidden">
               <span className="absolute inset-0 w-0 bg-white/20 transition-all duration-500 ease-out group-hover:w-full"></span>
               <span className="relative z-10 flex items-center">
                 <Check className="mr-2 h-4 w-4" /> 
